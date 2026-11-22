@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ты справишься 💛 — подготовка к контрольной по матанализу</title>
+<meta name="theme-color" content="#FFF6EF">
+
+<!-- Шрифты -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,500&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<!-- KaTeX -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+<!-- Plotly подгружается по требованию, когда открывают первый график -->
+
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<canvas id="fx"></canvas>
+
+<!-- ============ ПРИВЕТСТВИЕ ============ -->
+<header class="hero" id="top">
+  <div class="floaty" aria-hidden="true">
+    <span style="left:6%;animation-delay:0s">💛</span>
+    <span style="left:18%;animation-delay:4s;font-size:16px">✨</span>
+    <span style="left:32%;animation-delay:8s">🌷</span>
+    <span style="left:55%;animation-delay:2s;font-size:16px">💛</span>
+    <span style="left:70%;animation-delay:6s">🍀</span>
+    <span style="left:84%;animation-delay:10s;font-size:18px">✨</span>
+    <span style="left:93%;animation-delay:3s">💖</span>
+  </div>
+  <div class="hero-inner">
+    <span class="kicker">Матанализ · исследование функций · пределы</span>
+    <h1>Привет, <span class="name" id="hero-name">Алинка</span>!<br>Ты справишься 💛</h1>
+    <p class="sub">Здесь всё, что нужно к контрольной: задачи обоих вариантов с подсказками и пошаговыми решениями, шпаргалка и тренажёр. Без спешки, шаг за шагом.</p>
+    <button class="btn-main" id="start-btn">Начать подготовку</button>
+    <div class="progress-box">
+      <div class="progress-label"><span>До открытки 💌</span><span id="hero-count">0 из 0</span></div>
+      <div class="bar"><i id="hero-bar"></i></div>
+      <div class="progress-cheer" id="hero-cheer"></div>
+    </div>
+  </div>
+  <div class="scroll-hint" aria-hidden="true">листай вниз ↓</div>
+</header>
+
+<nav class="nav">
+  <div class="wrap">
+    <div class="nav-links">
+      <a href="#tasks">📝 Контрольная</a>
+      <a href="#cheat">📒 Шпаргалка</a>
+      <a href="#trainer">🏋️ Тренажёр</a>
+      <a href="#final">🍀 Финал</a>
+    </div>
+    <span class="nav-count" id="nav-count">0/0</span>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <!-- ============ КОНТРОЛЬНАЯ ============ -->
+  <section class="block" id="tasks">
+    <div class="sec-head reveal">
+      <span class="emoji">📝</span>
+      <h2>Задачи контрольной</h2>
+      <p>Реши на черновике и введи ответ — задача засчитается, когда он верный. Застряла — открой подсказку. Совсем не идёт — смотри решение по шагу за раз.</p>
+    </div>
+    <div class="switch reveal" id="switch" role="tablist" aria-label="Выбор варианта">
+      <span class="pill"></span>
+      <button class="active" data-variant="1" role="tab">Вариант 1<small id="cnt-v1"></small></button>
+      <button data-variant="2" role="tab">Вариант 2<small id="cnt-v2"></small></button>
+    </div>
+    <div class="variant show" id="variant-1"><div class="cards"></div></div>
+    <div class="variant" id="variant-2"><div class="cards"></div></div>
+  </section>
+
+  <!-- ============ ШПАРГАЛКА ============ -->
+  <section class="block" id="cheat">
+    <div class="sec-head reveal">
+      <span class="emoji">📒</span>
+      <h2>Шпаргалка</h2>
+      <p>Самое главное — коротко. Нажимай на раздел, чтобы раскрыть.</p>
+    </div>
+    <div class="cheat">
+
+      <details class="sheet reveal" open>
+        <summary><span class="ic" style="background:var(--rose-l)">🔍</span>Схема полного исследования функции</summary>
+        <div class="sheet-body">
+          <ol>
+            <li><b>Область определения</b> $D(y)$, точки разрыва.</li>
+            <li><b>Чётность / нечётность</b>: $y(-x)=y(x)$ — график симметричен относительно $Oy$; $y(-x)=-y(x)$ — относительно начала координат. Иначе — функция общего вида.</li>
+            <li><b>Пересечения с осями</b> ($y=0$ и $x=0$), интервалы знакопостоянства.</li>
+            <li><b>Асимптоты</b>: вертикальные, горизонтальные, наклонные.</li>
+            <li><b>Первая производная</b> $y'$: критические точки, интервалы монотонности, экстремумы.</li>
+            <li><b>Вторая производная</b> $y''$: интервалы выпуклости, точки перегиба.</li>
+            <li><b>Дополнительные точки</b> и область значений (если нужно).</li>
+            <li><b>График</b>: сначала асимптоты пунктиром, затем особые точки, потом — плавная кривая по таблицам.</li>
+          </ol>
+          <div class="note">💡 Результаты пунктов 5–6 удобно оформлять <b>таблицей знаков</b>: интервалы, знак производной, стрелочка ↗/↘ или ∪/∩.</div>
+        </div>
+      </details>
+
+      <details class="sheet reveal">
+        <summary><span class="ic" style="background:var(--lav-l)">↗️</span>Асимптоты: как искать</summary>
+        <div class="sheet-body">
+          <p><b>Вертикальная $x=a$</b> — если хотя бы один односторонний предел бесконечен:
+          $$\lim_{x\to a^-}f(x)=\pm\infty\quad\text{или}\quad\lim_{x\to a^+}f(x)=\pm\infty.$$
+          Кандидаты — точки, выпавшие из ООФ, и границы ООФ. Обязательно считай предел: не каждая «дырка» даёт асимптоту (например, в №8 варианта 1 при $x\to0^-$ получается $y\to0$).</p>
+          <p><b>Наклонная $y=kx+b$</b> — отдельно при $x\to+\infty$ и при $x\to-\infty$:
+          $$k=\lim_{x\to\pm\infty}\frac{f(x)}{x},\qquad b=\lim_{x\to\pm\infty}\bigl(f(x)-kx\bigr).$$
+          Если оба предела конечны — асимптота есть.</p>
+          <p><b>Горизонтальная $y=b$</b> — частный случай при $k=0$: $\;b=\lim\limits_{x\to\pm\infty}f(x)$.</p>
+          <div class="note">💡 Для дроби из многочленов: раздели с остатком. Целая часть $kx+b$ и есть наклонная асимптота. А на $+\infty$ и $-\infty$ асимптоты могут быть <b>разными</b> — всегда проверяй оба конца!</div>
+        </div>
+      </details>
+
+      <details class="sheet reveal">
+        <summary><span class="ic" style="background:var(--sage-l)">⛰️</span>Первая производная → монотонность и экстремумы</summary>
+        <div class="sheet-body">
+          <ul>
+            <li>$y' > 0$ на интервале — функция <b>возрастает</b> ↗; $y' &lt; 0$ — <b>убывает</b> ↘.</li>
+            <li><b>Критические точки</b>: где $y'=0$ или $y'$ <b>не существует</b> — но сама точка должна лежать в ООФ.</li>
+            <li>Знак $y'$ меняется с $+$ на $-$ → <b>максимум</b>; с $-$ на $+$ → <b>минимум</b>; не меняется → экстремума нет.</li>
+          </ul>
+          <div class="note">💡 Пример-ловушка: $y=x^{2/5}e^{-2x}$. В точке $x=0$ производной нет, но знак меняется $-\to+$, значит, там минимум. А у $y=\sqrt[3]{x}\,e^{-x/3}$ в нуле знак не меняется, поэтому экстремума нет.</div>
+          <p>Помни: $x^{m/n}$ с нечётным $n$ определена и при $x &lt; 0$. Например, $x^{3/5}=\sqrt[5]{x^3}$ имеет тот же знак, что $x$, а $x^{2/3}=\sqrt[3]{x^2}\ge0$.</p>
+        </div>
+      </details>
+
+      <details class="sheet reveal">
+        <summary><span class="ic" style="background:var(--honey-l)">〰️</span>Вторая производная → выпуклость и перегибы</summary>
+        <div class="sheet-body">
+          <ul>
+            <li>$y'' > 0$ — график <b>выпуклый вниз</b> ∪ («чашка»);</li>
+            <li>$y'' &lt; 0$ — график <b>выпуклый вверх</b> ∩ («шапочка»).</li>
+            <li><b>Точка перегиба</b>: $y''$ меняет знак в точке $x_0$, которая <b>входит в ООФ</b> (функция там непрерывна).</li>
+          </ul>
+          <div class="note">💡 Точки, где проходит вертикальная асимптота, — <b>не</b> перегибы, даже если знак $y''$ там меняется. В разных учебниках ∪ называют «вогнутой» или «выпуклой вниз», поэтому ориентируйся на знак $y''$ и значок.</div>
+          <p>Если в $y''$ остался квадратный трёхчлен, проверь дискриминант: при $D &lt; 0$ и старшем коэффициенте $> 0$ он всегда положителен и на знак не влияет.</p>
+        </div>
+      </details>
+
+      <details class="sheet reveal">
+        <summary><span class="ic" style="background:var(--rose-l)">∞</span>Правило Лопиталя и неопределённости</summary>
+        <div class="sheet-body">
+          <p>Если $\lim\frac{f(x)}{g(x)}$ имеет вид $\frac00$ или $\frac{\infty}{\infty}$ и существует $\lim\frac{f'(x)}{g'(x)}$, то
+          $$\lim\frac{f(x)}{g(x)}=\lim\frac{f'(x)}{g'(x)}.$$</p>
+          <div class="note">⚠️ Числитель и знаменатель дифференцируются <b>по отдельности</b> — это не производная дроби! Правило можно применять несколько раз, но каждый раз проверяй, что неопределённость осталась.</div>
+          <table class="lt-table">
+            <tr><th>Вид</th><th>Как привести к $\frac00$ или $\frac\infty\infty$</th></tr>
+            <tr><td>$0\cdot\infty$</td><td>$f\cdot g=\dfrac{f}{1/g}$ или $\dfrac{g}{1/f}$. Логарифм лучше оставлять в числителе.</td></tr>
+            <tr><td>$\infty-\infty$</td><td>Привести к общему знаменателю или вынести множитель: $f-g=\dfrac{\frac1g-\frac1f}{\frac{1}{fg}}$</td></tr>
+            <tr><td>$1^\infty,\ 0^0,\ \infty^0$</td><td>Обозначить $y=f^{\,g}$, прологарифмировать: $\ln y=g\cdot\ln f$ (это $0\cdot\infty$). Найти $\lim\ln y=L$, тогда $\lim y=e^{L}$.</td></tr>
+          </table>
+          <p><b>Кто растёт быстрее</b> при $x\to+\infty$: $\;\ln x \ll x^a \ll a^x\;$ ($a > 1$).</p>
+          <p><b>Эквивалентности</b> при $t\to0$: $\sin t\sim t$, $\operatorname{tg}t\sim t$, $\ln(1+t)\sim t$, $e^t-1\sim t$, $a^t-1\sim t\ln a$, $1-\cos t\sim\frac{t^2}{2}$.</p>
+        </div>
+      </details>
+
+      <details class="sheet reveal">
+        <summary><span class="ic" style="background:var(--lav-l)">📐</span>Таблица производных и правила</summary>
+        <div class="sheet-body">
+          <div class="deriv-grid">
+            <div>$(C)'=0$</div>
+            <div>$(x^a)'=a\,x^{a-1}$</div>
+            <div>$(\sqrt{x})'=\dfrac{1}{2\sqrt{x}}$</div>
+            <div>$\left(\dfrac1x\right)'=-\dfrac{1}{x^2}$</div>
+            <div>$(a^x)'=a^x\ln a$</div>
+            <div>$(e^x)'=e^x$</div>
+            <div>$(\log_a x)'=\dfrac{1}{x\ln a}$</div>
+            <div>$(\ln x)'=\dfrac1x$</div>
+            <div>$(\sin x)'=\cos x$</div>
+            <div>$(\cos x)'=-\sin x$</div>
+            <div>$(\operatorname{tg}x)'=\dfrac{1}{\cos^2x}$</div>
+            <div>$(\operatorname{ctg}x)'=-\dfrac{1}{\sin^2x}$</div>
+            <div>$(\arcsin x)'=\dfrac{1}{\sqrt{1-x^2}}$</div>
+            <div>$(\arccos x)'=-\dfrac{1}{\sqrt{1-x^2}}$</div>
+            <div>$(\operatorname{arctg}x)'=\dfrac{1}{1+x^2}$</div>
+            <div>$(\operatorname{arcctg}x)'=-\dfrac{1}{1+x^2}$</div>
+          </div>
+          <p style="margin-top:14px"><b>Правила:</b></p>
+          <div class="deriv-grid">
+            <div>$(u\pm v)'=u'\pm v'$</div>
+            <div>$(Cu)'=C\,u'$</div>
+            <div>$(uv)'=u'v+uv'$</div>
+            <div>$\left(\dfrac uv\right)'=\dfrac{u'v-uv'}{v^2}$</div>
+            <div>$\bigl(f(g(x))\bigr)'=f'(g)\cdot g'$</div>
+            <div>$(e^{u})'=e^{u}\cdot u'$</div>
+          </div>
+        </div>
+      </details>
+
+    </div>
+  </section>
+
+  <!-- ============ ТРЕНАЖЁР ============ -->
+  <section class="block" id="trainer">
+    <div class="sec-head reveal">
+      <span class="emoji">🏋️</span>
+      <h2>Тренажёр</h2>
+      <p>Задачи, похожие на контрольную, по каждой теме. Формат тот же: подсказка → шаги → ответ.</p>
+      <p style="font-weight:800;color:var(--rose-d)" id="cnt-trainer"></p>
+    </div>
+    <div id="trainer-list"></div>
+  </section>
+
+  <!-- ============ ФИНАЛ ============ -->
+  <section class="block" id="final">
+    <div class="final-card reveal" id="final-card"></div>
+  </section>
+
+</main>
+
+<footer class="site">Сделано с любовью специально для тебя 💛</footer>
+
+<div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-labelledby="ov-title">
+  <div class="final-card" id="overlay-card"></div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<!-- Обычные скрипты (не модули), чтобы сайт открывался двойным кликом без сервера. Порядок важен. -->
+<script defer src="js/utils.js"></script>
+<script defer src="js/config.js"></script>
+<script defer src="js/data/variant1.js"></script>
+<script defer src="js/data/variant2.js"></script>
+<script defer src="js/data/trainer.js"></script>
+<script defer src="js/data/checks.js"></script>
+<script defer src="js/lib/math-parser.js"></script>
+<script defer src="js/state.js"></script>
+<script defer src="js/render.js"></script>
+<script defer src="js/graph.js"></script>
+<script defer src="js/effects.js"></script>
+<script defer src="js/progress.js"></script>
+<script defer src="js/answer-check.js"></script>
+<script defer src="js/notify.js"></script>
+<script defer src="js/app.js"></script>
+
+</body>
+</html>

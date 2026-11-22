@@ -1,0 +1,12 @@
+{
+  "name": "matan-trainer",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Тренажёр к контрольной по матанализу",
+  "scripts": {
+    "dev": "vite --open"
+  },
+  "devDependencies": {
+    "vite": "^5.4.0"
+  }
+}
