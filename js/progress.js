@@ -124,6 +124,7 @@ function openCard(){
   notifyCardOpened(isUnlocked(g), first);
   if(first){
     state.envelopeSeen = true; saveState();
+    notifyUnlocked();   // она впервые видит открытый конверт (дорешала или открылся по дате)
     setTimeout(() => {
       const env = document.querySelector('#overlay .envelope');
       if(env){ const r = env.getBoundingClientRect(); burst(r.left + r.width/2, r.top + r.height/3, 80); }

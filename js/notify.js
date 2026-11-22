@@ -110,10 +110,15 @@ function notifyPeek(){
   if(!NOTIFY_EVENTS.peek) return;
   notify({alinka:`🙈 ${NAME} подглядела открытку раньше времени`, other:'🙈 Неизвестный посетитель подглядел открытку'});
 }
+/* Впервые увидела открытый конверт с приглашением — и когда дорешала, и когда он открылся сам по дате. */
 function notifyUnlocked(){
   if(!NOTIFY_EVENTS.unlocked) return;
-  notify({alinka:`🎉 ${NAME} дорешала до конверта!`, other:'🎉 Неизвестный посетитель дорешал до конверта'},
-         'Конверт с приглашением открылся.');
+  const g = goalState();
+  const reason = g.unlocked
+    ? `Дорешала: ${g.variantDone ? `вариант ${g.v1 === VARIANT1.length ? 1 : 2} целиком` : 'вариант'} + ${Math.min(g.tr, g.trNeed)} из тренажёра 🎉`
+    : 'Конверт открылся сам по дате — после контрольной.';
+  notify({alinka:`💌 ${NAME} открыла конверт и прочитала приглашение!`,
+          other:'💌 Неизвестный посетитель открыл конверт с приглашением'}, reason);
 }
 function notifyCardOpened(envelopeOpen, firstReveal){
   if(!NOTIFY_EVENTS.cardOpened) return;

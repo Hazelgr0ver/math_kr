@@ -19,8 +19,7 @@ function markSolved(card){
   burst(r.left + r.width/2, r.top + r.height/2);
   if(isUnlocked(g) && !wasUnlocked){
     // конверт открылся именно сейчас — показываем открытку с анимацией конверта
-    state.finaleShown = true;
-    if(g.unlocked) notifyUnlocked();   // именно дорешала (а не наступила дата)
+    state.finaleShown = true;          // уведомление уйдёт из openCard, когда она увидит конверт
     setTimeout(openCard, 500);
   } else if(!isUnlocked(g) && g.variantDone && !g.trainerDone && card.closest('.variant')){
     toast(`Вариант решён! Осталось ${g.trNeed - g.tr} из тренажёра 💌`);
