@@ -41,8 +41,8 @@ const STORAGE_KEY = 'alinka-matan-progress-v1';
    ===================================================================== */
 // Токен ОТДЕЛЬНОГО бота от @BotFather и твой chat id. Пока пусто — уведомления не отправляются.
 // ⚠️ Токен виден в коде сайта, поэтому бот должен быть только для этого сайта.
-const TG_BOT_TOKEN = '';
-const TG_CHAT_ID   = '';
+const TG_BOT_TOKEN = '9045376814:AAEe3TiuwZ1dGd6kSlUHfHv8yHUgQESnztE';   // @otkritkaProchitala_bot
+const TG_CHAT_ID   = '651984584';
 
 // Личные ссылки (ключ можно поменять на любой):
 //   для Алинки:  https://АДРЕС-САЙТА/?k=Vvno7Pac  — её устройство запомнится как «Алинка»
