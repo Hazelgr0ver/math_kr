@@ -102,8 +102,8 @@ function envelopeHTML(g, animate){
 function postcardHTML(g, animate){
   return `<button class="ov-x" data-act="close-final" aria-label="Закрыть">×</button>
     <div class="big">🍀</div>
-    <h2 id="ov-title">${escapeHTML(CARD_TITLE)}</h2>
-    <div class="letter">${escapeHTML(CARD_MESSAGE)}</div>
+    <h2 id="ov-title">${escapeHTML(g.unlocked ? CARD_TITLE : CARD_TITLE_EARLY)}</h2>
+    <div class="letter">${escapeHTML(g.unlocked ? CARD_MESSAGE : CARD_MESSAGE_EARLY)}</div>
     ${envelopeHTML(g, animate)}
     <button class="btn-main close" data-act="close-final">Спасибо 💛</button>`;
 }
