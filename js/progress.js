@@ -44,7 +44,8 @@ function updateProgress(){
 /* Конверт открыт, если выполнены условия ИЛИ наступила дата ENVELOPE_OPEN_DATE (после контрольной). */
 function dateReached(){
   if(!ENVELOPE_OPEN_DATE) return false;
-  const t = new Date(ENVELOPE_OPEN_DATE + 'T00:00:00');
+  // полная дата со временем и поясом — как есть; просто 'ГГГГ-ММ-ДД' — с начала дня по времени устройства
+  const t = new Date(ENVELOPE_OPEN_DATE.includes('T') ? ENVELOPE_OPEN_DATE : ENVELOPE_OPEN_DATE + 'T00:00:00');
   return !Number.isNaN(t.getTime()) && Date.now() >= t.getTime();
 }
 const isUnlocked = g => g.unlocked || dateReached();

@@ -162,5 +162,16 @@ function init(){
   setupReveal();
   setupNavHighlight();
   notifyVisit();
+
+  // Если сайт открыт в момент ENVELOPE_OPEN_DATE — открываем конверт без перезагрузки
+  if(!isUnlocked(goalState())){
+    const timer = setInterval(() => {
+      if(dateReached()){
+        clearInterval(timer);
+        updateProgress();
+        toast('Контрольная позади — конверт открылся 💌 Загляни в «Финал»');
+      }
+    }, 60000);
+  }
 }
 document.addEventListener('DOMContentLoaded', init);
