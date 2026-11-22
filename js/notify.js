@@ -38,11 +38,31 @@ const isAlinka = () => lsGet(WHO_KEY) === 'alinka';
 const isOwner  = () => lsGet(WHO_KEY) === 'owner';
 const isLocalRun = () => location.protocol === 'file:' || /^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname);
 
+/* Программы-проверялки ссылок (антивирусы, превью, поисковики) открывают сайт в «невидимом» браузере.
+   Отсеиваем явных: управляемые программой браузеры и с пометками робота в описании. */
+function isBot(){
+  try{ if(navigator.webdriver) return true; }catch(e){}
+  return /bot|crawl|spider|slurp|headless|lighthouse|pagespeed|preview|inspect|scan|facebookexternalhit|whatsapp|vkshare|bingpreview|phantom|puppeteer|playwright|selenium/i
+    .test(navigator.userAgent || '');
+}
+
 function notifyEnabled(){
   if(!TG_BOT_TOKEN || !TG_CHAT_ID) return false;
   if(isOwner()) return false;
   if(isLocalRun() && !NOTIFY_ON_LOCALHOST) return false;
+  if(isBot()) return false;
   return true;
+}
+
+/* Откуда пришли на сайт (по заголовку Referer). */
+function referrerLabel(){
+  let host = '';
+  try{ host = document.referrer ? new URL(document.referrer).hostname : ''; }catch(e){}
+  if(!host || host === location.hostname) return 'открыли напрямую (ссылкой или закладкой)';
+  if(/t\.me|telegram/.test(host)) return 'из Telegram';
+  if(/vk\.com|vk\.ru/.test(host)) return 'из ВКонтакте';
+  if(/github/.test(host)) return 'с GitHub';
+  return 'с ' + host;
 }
 
 /* Не чаще раза в N минут для данного ключа (на этом устройстве). */
@@ -73,9 +93,18 @@ function notify(text, extra){
 }
 
 /* ---------- События ---------- */
+/* Заход засчитываем только после действия человека (касание, клик, колёсико, клавиша):
+   проверялки ссылок страницу открывают, но не трогают. */
 function notifyVisit(){
-  if(!notifyEnabled() || !throttleOk('visit', NOTIFY_VISIT_EVERY_MIN)) return;
-  notify({alinka:`👀 ${NAME} зашла на сайт`, other:'👀 На сайт зашёл неизвестный посетитель'});
+  if(!notifyEnabled()) return;
+  const ref = referrerLabel();          // запоминаем сразу, пока страница не менялась
+  const EVENTS = ['pointerdown', 'touchstart', 'wheel', 'keydown'];
+  const onHuman = () => {
+    EVENTS.forEach(ev => removeEventListener(ev, onHuman, true));
+    if(!notifyEnabled() || !throttleOk('visit', NOTIFY_VISIT_EVERY_MIN)) return;
+    notify({alinka:`👀 ${NAME} зашла на сайт`, other:'👀 На сайт зашёл неизвестный посетитель'}, `Переход: ${ref}`);
+  };
+  EVENTS.forEach(ev => addEventListener(ev, onHuman, {capture:true, passive:true}));
 }
 function notifyPeek(){
   notify({alinka:`🙈 ${NAME} подглядела открытку раньше времени`, other:'🙈 Неизвестный посетитель подглядел открытку'});
