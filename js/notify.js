@@ -96,7 +96,7 @@ function notify(text, extra){
 /* Заход засчитываем только после действия человека (касание, клик, колёсико, клавиша):
    проверялки ссылок страницу открывают, но не трогают. */
 function notifyVisit(){
-  if(!notifyEnabled()) return;
+  if(!NOTIFY_EVENTS.visit || !notifyEnabled()) return;
   const ref = referrerLabel();          // запоминаем сразу, пока страница не менялась
   const EVENTS = ['pointerdown', 'touchstart', 'wheel', 'keydown'];
   const onHuman = () => {
@@ -107,13 +107,16 @@ function notifyVisit(){
   EVENTS.forEach(ev => addEventListener(ev, onHuman, {capture:true, passive:true}));
 }
 function notifyPeek(){
+  if(!NOTIFY_EVENTS.peek) return;
   notify({alinka:`🙈 ${NAME} подглядела открытку раньше времени`, other:'🙈 Неизвестный посетитель подглядел открытку'});
 }
 function notifyUnlocked(){
+  if(!NOTIFY_EVENTS.unlocked) return;
   notify({alinka:`🎉 ${NAME} дорешала до конверта!`, other:'🎉 Неизвестный посетитель дорешал до конверта'},
          'Конверт с приглашением открылся.');
 }
 function notifyCardOpened(envelopeOpen, firstReveal){
+  if(!NOTIFY_EVENTS.cardOpened) return;
   // повторные открытия — не чаще раза в 10 минут; первое открытие конверта — всегда
   if(!firstReveal && !throttleOk('card', 10)) return;
   const extra = firstReveal ? 'Конверт открыт — она прочитала приглашение 💌'

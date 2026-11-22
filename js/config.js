@@ -57,6 +57,14 @@ const TG_CHAT_ID   = '651984584';
 const ALINKA_KEY = 'Vvno7Pac';
 const OWNER_KEY  = 'FBo6RNYD';
 
+// Какие уведомления присылать (true — присылать, false — нет):
+const NOTIFY_EVENTS = {
+  peek:       true,    // 🙈 открыла открытку раньше времени («Ну очень хочется»)
+  visit:      false,   // 👀 зашла на сайт
+  unlocked:   false,   // 🎉 дорешала до конверта
+  cardOpened: false,   // 💌 открыла открытку (обычным путём)
+};
+
 // Заход на сайт присылать не чаще, чем раз в столько минут (с одного устройства):
 const NOTIFY_VISIT_EVERY_MIN = 30;
 
