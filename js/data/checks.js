@@ -49,9 +49,10 @@ const CHECKS = {
 
   'v2-3-1':[
     {type:'list', label:R`Вертикальные асимптоты`, ans:'0'},
-    {type:'line', label:R`Наклонная асимптота`, ans:'x+1'},
-    {type:'intervals', label:'Промежутки убывания', ans:'(0;1)'},
-    {type:'point', label:'Точка минимума', ans:'(1;e)'}],
+    {type:'line', label:R`Горизонтальная асимптота (при $x\to+\infty$)`, ans:'0'},
+    {type:'intervals', label:'Промежутки возрастания', ans:'(-inf;-1)'},
+    {type:'point', label:'Точка максимума', ans:'(-1;-e)'},
+    {type:'intervals', label:'Где график выпуклый вниз (∪)', ans:'(0;inf)'}],
   'v2-3-2':[
     {type:'list', label:R`Вертикальные асимптоты`, ans:'0;2'},
     {type:'line', label:R`Горизонтальная асимптота`, ans:'0'},
