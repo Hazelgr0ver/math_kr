@@ -40,7 +40,7 @@
   <div class="hero-inner">
     <span class="kicker">Матанализ · исследование функций · пределы</span>
     <h1>Привет, <span class="name" id="hero-name">Алинка</span>!<br>Ты справишься 💛</h1>
-    <p class="sub">Здесь всё, что нужно к контрольной: задачи обоих вариантов с подсказками и пошаговыми решениями, шпаргалка и тренажёр. Без спешки, шаг за шагом.</p>
+    <p class="sub">Здесь всё, что нужно к контрольной: задачи обоих вариантов с подсказками и пошаговыми решениями, повторение базы, шпаргалка и тренажёр. Без спешки, шаг за шагом.</p>
     <button class="btn-main" id="start-btn">Начать подготовку</button>
     <div class="progress-box">
       <div class="progress-label"><span>До открытки 💌</span><span id="hero-count">0 из 0</span></div>
@@ -55,6 +55,7 @@
   <div class="wrap">
     <div class="nav-links">
       <a href="#tasks">📝 Контрольная</a>
+      <a href="#base">📚 База</a>
       <a href="#cheat">📒 Шпаргалка</a>
       <a href="#trainer">🏋️ Тренажёр</a>
       <a href="#final">🍀 Финал</a>
@@ -79,6 +80,199 @@
     </div>
     <div class="variant show" id="variant-1"><div class="cards"></div></div>
     <div class="variant" id="variant-2"><div class="cards"></div></div>
+  </section>
+
+  <!-- ============ БАЗА ============ -->
+  <section class="block" id="base">
+    <div class="sec-head reveal">
+      <span class="emoji">📚</span>
+      <h2>Повторим базу</h2>
+      <p>Всё из школьной математики, что нужно для контрольной. Если в решении непонятен какой-то переход — загляни сюда. В каждом блоке есть «Проверь себя».</p>
+    </div>
+    <div class="cheat">
+
+      <details class="sheet reveal" id="base-powers">
+        <summary><span class="ic" style="background:var(--lav-l)">🔢</span>Степени и корни</summary>
+        <div class="sheet-body">
+          <div class="deriv-grid">
+            <div>$a^0=1$</div>
+            <div>$a^{-n}=\dfrac{1}{a^n}$</div>
+            <div>$a^{m/n}=\sqrt[n]{a^m}$</div>
+            <div>$a^m\cdot a^n=a^{m+n}$</div>
+            <div>$\dfrac{a^m}{a^n}=a^{m-n}$</div>
+            <div>$(a^m)^n=a^{mn}$</div>
+          </div>
+          <p style="margin-top:12px"><b>Зачем это нужно:</b> перед тем как брать производную, корни и дроби удобно переписать степенью — тогда работает одна формула $(x^a)'=a\,x^{a-1}$:</p>
+          <p>$\sqrt{x}=x^{1/2}$, $\quad\dfrac{1}{x^2}=x^{-2}$, $\quad\dfrac{1}{\sqrt[3]{x}}=x^{-1/3}$, $\quad\sqrt[5]{x^2}=x^{2/5}$.</p>
+          <div class="note">💡 Корень <b>нечётной</b> степени есть и из отрицательного числа: $\sqrt[3]{-8}=-2$. Поэтому $x^{3/5}=\sqrt[5]{x^3}$ имеет тот же знак, что и $x$, а $x^{2/5}=\sqrt[5]{x^2}\ge0$ всегда. Корень <b>чётной</b> степени из отрицательного не существует.</div>
+          <div class="qa-list"><p class="qa-title">Проверь себя (нажми на вопрос):</p>
+            <details class="qa"><summary>$x^{-3}\cdot x^{5}=\;?$</summary><span>$x^{2}$ — показатели складываются: $-3+5=2$</span></details>
+            <details class="qa"><summary>$\dfrac{1}{\sqrt{x}}$ — в виде степени?</summary><span>$x^{-1/2}$</span></details>
+            <details class="qa"><summary>$8^{2/3}=\;?$</summary><span>$\sqrt[3]{8^2}=\left(\sqrt[3]{8}\right)^2=2^2=4$</span></details>
+          </div>
+        </div>
+      </details>
+
+      <details class="sheet reveal" id="base-frac">
+        <summary><span class="ic" style="background:var(--honey-l)">✖️</span>Дроби, скобки, разложение на множители</summary>
+        <div class="sheet-body">
+          <p><b>Общий знаменатель:</b> $\;\dfrac ab\pm\dfrac cd=\dfrac{ad\pm bc}{bd}$.</p>
+          <p><b>Вынести общий множитель</b> — главный приём в производных. Ищем то, что есть в каждом слагаемом:</p>
+          <p>$x^3-x^2=x^2(x-1)$, $\qquad 3(x-2)^2(x+3)-(x-2)^3=(x-2)^2\bigl(3(x+3)-(x-2)\bigr)=(x-2)^2(2x+11)$.</p>
+          <p><b>Формулы сокращённого умножения:</b></p>
+          <div class="deriv-grid">
+            <div>$(a\pm b)^2=a^2\pm2ab+b^2$</div>
+            <div>$a^2-b^2=(a-b)(a+b)$</div>
+            <div>$a^3-b^3=(a-b)(a^2+ab+b^2)$</div>
+          </div>
+          <p style="margin-top:12px"><b>Квадратный трёхчлен</b> $ax^2+bx+c$: $\;D=b^2-4ac$, $\;x_{1,2}=\dfrac{-b\pm\sqrt D}{2a}$, $\;ax^2+bx+c=a(x-x_1)(x-x_2)$.</p>
+          <p>Если $D &lt; 0$ — корней нет, и трёхчлен <b>всегда одного знака</b> — такого же, как $a$. Пример: $x^2+11x+49$, $D=121-196 &lt; 0$, значит, всегда $&gt; 0$.</p>
+          <p><b>Выделение полного квадрата:</b> $x^2-2x+2=(x-1)^2+1$ — сразу видно, что это всегда $\ge1 &gt; 0$.</p>
+          <div class="note">⚠️ Сокращать можно только <b>множители</b>, а не слагаемые: $\dfrac{x(x+2)}{x}=x+2$, но $\dfrac{x+2}{x}\ne2$.</div>
+          <div class="qa-list"><p class="qa-title">Проверь себя:</p>
+            <details class="qa"><summary>Разложи $x^2-4$</summary><span>$(x-2)(x+2)$</span></details>
+            <details class="qa"><summary>Корни $x^2-5x+6$?</summary><span>$D=25-24=1$, $x=\dfrac{5\pm1}{2}$: $\;2$ и $3$. Значит, $x^2-5x+6=(x-2)(x-3)$</span></details>
+            <details class="qa"><summary>Какой знак у $x^2+x+1$?</summary><span>$D=1-4=-3 &lt; 0$, $a=1 &gt; 0$ — всегда положительный</span></details>
+          </div>
+        </div>
+      </details>
+
+      <details class="sheet reveal" id="base-intervals">
+        <summary><span class="ic" style="background:var(--sage-l)">±</span>Метод интервалов: как делать таблицу знаков</summary>
+        <div class="sheet-body">
+          <p>Нужен, чтобы понять, где производная $&gt; 0$, а где $&lt; 0$. Порядок всегда один:</p>
+          <ol>
+            <li><b>Разложи</b> выражение на множители (и числитель, и знаменатель).</li>
+            <li><b>Найди точки</b>, где каждый множитель равен нулю, и точки, выпавшие из ООФ.</li>
+            <li><b>Отметь их на прямой</b> — она разобьётся на интервалы.</li>
+            <li>В каждом интервале возьми <b>любое пробное число</b>, подставь и посмотри только на знак.</li>
+          </ol>
+          <p><b>Пример:</b> знак $\dfrac{x-1}{x^3}$. Особые точки: $x=0$ (знаменатель) и $x=1$ (числитель).</p>
+          <div class="tbl-wrap"><table class="sign-table">
+            <tr><th>$x$</th><td>$(-\infty;0)$</td><td>$(0;1)$</td><td>$(1;+\infty)$</td></tr>
+            <tr><th>пробуем</th><td>$x=-1$: $\dfrac{-2}{-1}$</td><td>$x=\frac12$: $\dfrac{-1/2}{1/8}$</td><td>$x=2$: $\dfrac{1}{8}$</td></tr>
+            <tr><th>знак</th><td><span class="pl">+</span></td><td><span class="mi">−</span></td><td><span class="pl">+</span></td></tr>
+          </table></div>
+          <div class="note">💡 Множители, которые <b>всегда положительны</b>, на знак не влияют — их можно не считать: $e^{x}$, $e^{-x}$, $x^2+4$, $(x-1)^2+1$. Множитель в <b>чётной</b> степени, например $(x-2)^2$, не меняет знак при переходе через свой ноль.</div>
+          <div class="qa-list"><p class="qa-title">Проверь себя:</p>
+            <details class="qa"><summary>Знак $\dfrac{x+5}{(x-1)^5}$ при $x=0$?</summary><span>$\dfrac{5}{(-1)^5}=\dfrac{5}{-1} &lt; 0$ — минус</span></details>
+            <details class="qa"><summary>Где $(x-2)^2(2x+11) &gt; 0$?</summary><span>$(x-2)^2\ge0$ на знак не влияет, решаем $2x+11 &gt; 0$: $\;x &gt; -\frac{11}{2}$ (кроме $x=2$, где выражение $=0$)</span></details>
+          </div>
+        </div>
+      </details>
+
+      <details class="sheet reveal" id="base-explog">
+        <summary><span class="ic" style="background:var(--rose-l)">eˣ</span>Экспонента и логарифм</summary>
+        <div class="sheet-body">
+          <ul>
+            <li>$e\approx2{,}718$. $\;e^x &gt; 0$ <b>всегда</b>, $\;e^0=1$, $\;e^{-x}=\dfrac{1}{e^x}$.</li>
+            <li>$\lim\limits_{x\to+\infty}e^x=+\infty$, $\;\lim\limits_{x\to-\infty}e^x=0$.</li>
+            <li>$\ln x$ существует <b>только при $x &gt; 0$</b>. $\;\ln1=0$, $\;\ln e=1$, $\;\ln x &lt; 0$ при $0 &lt; x &lt; 1$.</li>
+            <li>$\lim\limits_{x\to0^+}\ln x=-\infty$, $\;\lim\limits_{x\to+\infty}\ln x=+\infty$.</li>
+          </ul>
+          <div class="deriv-grid">
+            <div>$\ln(ab)=\ln a+\ln b$</div>
+            <div>$\ln\dfrac ab=\ln a-\ln b$</div>
+            <div>$\ln a^k=k\ln a$</div>
+            <div>$e^{\ln a}=a$</div>
+          </div>
+          <p style="margin-top:12px">Пример из №8: $\;\ln\dfrac18=-\ln8=-\ln2^3=-3\ln2$.</p>
+          <p><b>Замена</b> для выражений с $2^x$, $4^x$: обозначь $t=2^x$ (помни, $t &gt; 0$), тогда $4^x=(2^2)^x=(2^x)^2=t^2$.</p>
+          <div class="qa-list"><p class="qa-title">Проверь себя:</p>
+            <details class="qa"><summary>$\ln\dfrac{1}{e^2}=\;?$</summary><span>$\ln e^{-2}=-2$</span></details>
+            <details class="qa"><summary>$e^{\ln5}=\;?$</summary><span>$5$</span></details>
+            <details class="qa"><summary>Где определён $\ln(x-1)$?</summary><span>$x-1 &gt; 0$, то есть $x &gt; 1$</span></details>
+          </div>
+        </div>
+      </details>
+
+      <details class="sheet reveal" id="base-trig">
+        <summary><span class="ic" style="background:var(--honey-l)">📐</span>Тригонометрия</summary>
+        <div class="sheet-body">
+          <p>На единичной окружности точка угла $\alpha$ имеет координаты $(\cos\alpha;\,\sin\alpha)$: <b>косинус — по горизонтали, синус — по вертикали</b>.</p>
+          <p>$\operatorname{tg}\alpha=\dfrac{\sin\alpha}{\cos\alpha}$, $\qquad\operatorname{ctg}\alpha=\dfrac{\cos\alpha}{\sin\alpha}=\dfrac{1}{\operatorname{tg}\alpha}$.</p>
+          <p><b>Радианы:</b> $\pi=180^\circ$, $\;\frac\pi2=90^\circ$, $\;\frac\pi3=60^\circ$, $\;\frac\pi4=45^\circ$, $\;\frac\pi6=30^\circ$.</p>
+          <div class="tbl-wrap"><table class="sign-table">
+            <tr><th>угол</th><td>$0$</td><td>$\frac\pi6$</td><td>$\frac\pi4$</td><td>$\frac\pi3$</td><td>$\frac\pi2$</td><td>$\pi$</td></tr>
+            <tr><th>$\sin$</th><td>$0$</td><td>$\frac12$</td><td>$\frac{\sqrt2}{2}$</td><td>$\frac{\sqrt3}{2}$</td><td>$1$</td><td>$0$</td></tr>
+            <tr><th>$\cos$</th><td>$1$</td><td>$\frac{\sqrt3}{2}$</td><td>$\frac{\sqrt2}{2}$</td><td>$\frac12$</td><td>$0$</td><td>$-1$</td></tr>
+            <tr><th>$\operatorname{tg}$</th><td>$0$</td><td>$\frac{\sqrt3}{3}$</td><td>$1$</td><td>$\sqrt3$</td><td>—</td><td>$0$</td></tr>
+            <tr><th>$\operatorname{ctg}$</th><td>—</td><td>$\sqrt3$</td><td>$1$</td><td>$\frac{\sqrt3}{3}$</td><td>$0$</td><td>—</td></tr>
+          </table></div>
+          <p><b>Главные формулы:</b></p>
+          <div class="deriv-grid">
+            <div>$\sin^2x+\cos^2x=1$</div>
+            <div>$\sin2x=2\sin x\cos x$</div>
+            <div>$\cos2x=\cos^2x-\sin^2x$</div>
+            <div>$1+\operatorname{tg}^2x=\dfrac{1}{\cos^2x}$</div>
+          </div>
+          <p style="margin-top:12px"><b>Формулы приведения</b> (самые нужные):</p>
+          <div class="deriv-grid">
+            <div>$\sin\left(\frac\pi2-x\right)=\cos x$</div>
+            <div>$\cos\left(\frac\pi2-x\right)=\sin x$</div>
+            <div>$\operatorname{tg}\left(\frac\pi2-x\right)=\operatorname{ctg}x$</div>
+            <div>$\cos(\pi+x)=-\cos x$</div>
+          </div>
+          <div class="note">💡 <b>Около $\frac\pi2$</b> (это встречается в №10): $\cos\frac\pi2=0$, поэтому $\operatorname{tg}x\to+\infty$ при $x\to\frac\pi2-0$ и $\operatorname{tg}x\to-\infty$ при $x\to\frac\pi2+0$, а $\operatorname{ctg}\frac\pi2=0$. И ещё: $\lim\limits_{x\to0}\dfrac{\sin x}{x}=1$, $\;\lim\limits_{x\to0}\dfrac{\operatorname{tg}x}{x}=1$, $\;\operatorname{arctg}x\to\pm\frac\pi2$ при $x\to\pm\infty$.</div>
+          <div class="qa-list"><p class="qa-title">Проверь себя:</p>
+            <details class="qa"><summary>$\sin\frac\pi6=\;?\quad\cos\pi=\;?\quad\operatorname{tg}\frac\pi4=\;?$</summary><span>$\frac12$, $\;-1$, $\;1$</span></details>
+            <details class="qa"><summary>Упрости $\dfrac{1}{\operatorname{tg}x}\cdot\dfrac{1}{\cos^2x}$</summary><span>$\dfrac{\cos x}{\sin x}\cdot\dfrac{1}{\cos^2x}=\dfrac{1}{\sin x\cos x}=\dfrac{2}{\sin2x}$ — это шаг из №10.2 варианта 1</span></details>
+            <details class="qa"><summary>Чему равен $\operatorname{ctg}\frac\pi2$ и почему?</summary><span>$\dfrac{\cos\frac\pi2}{\sin\frac\pi2}=\dfrac01=0$</span></details>
+          </div>
+        </div>
+      </details>
+
+      <details class="sheet reveal" id="base-limits">
+        <summary><span class="ic" style="background:var(--lav-l)">→</span>Пределы: как считать</summary>
+        <div class="sheet-body">
+          <ol>
+            <li><b>Сначала просто подставь</b> число. Получилось обычное число — это и есть ответ.</li>
+            <li>Получилось что-то с нулём или бесконечностью — смотри «арифметику бесконечностей» ниже.</li>
+            <li>Получилась неопределённость ($\frac00$, $\frac\infty\infty$, $0\cdot\infty$, $\infty-\infty$, $1^\infty$, $0^0$, $\infty^0$) — тут нужен приём, например правило Лопиталя (оно в шпаргалке).</li>
+          </ol>
+          <p><b>Арифметика бесконечностей</b> (это <b>не</b> неопределённости, тут ответ сразу):</p>
+          <div class="deriv-grid">
+            <div>$\dfrac{c}{\infty}=0$</div>
+            <div>$\dfrac{c}{\pm0}=\pm\infty$ ($c\ne0$)</div>
+            <div>$\infty+c=\infty$</div>
+            <div>$c\cdot\infty=\infty$ ($c\ne0$)</div>
+            <div>$e^{+\infty}=+\infty,\;\; e^{-\infty}=0$</div>
+            <div>$\ln(+0)=-\infty$</div>
+          </div>
+          <div class="note">💡 <b>«+0» и «−0»</b> — важно, с какой стороны подходим. При $x\to2^+$ ($x$ чуть больше 2) $x-2\to+0$, и $\dfrac{1}{x-2}\to+\infty$. При $x\to2^-$ $x-2\to-0$, и $\dfrac{1}{x-2}\to-\infty$. Так находят, куда уходит график у вертикальной асимптоты.</div>
+          <p><b>Дробь из многочленов при $x\to\infty$:</b> подели всё на старшую степень $x$. Степени равны — ответ: отношение старших коэффициентов ($\frac{2x^2+1}{x^2-3}\to2$); у числителя меньше — ответ $0$; больше — $\infty$.</p>
+          <div class="qa-list"><p class="qa-title">Проверь себя:</p>
+            <details class="qa"><summary>$\lim\limits_{x\to3^+}\dfrac{5}{x-3}=\;?$</summary><span>$\left[\dfrac{5}{+0}\right]=+\infty$</span></details>
+            <details class="qa"><summary>$\lim\limits_{x\to+\infty}\dfrac{x}{x^2+1}=\;?$</summary><span>$0$ — степень числителя меньше</span></details>
+            <details class="qa"><summary>$\lim\limits_{x\to-\infty}x\,e^{x}$ — это неопределённость?</summary><span>Да, $\infty\cdot0$. Ответ $0$: экспонента «сильнее» любой степени $x$</span></details>
+          </div>
+        </div>
+      </details>
+
+      <details class="sheet reveal" id="base-deriv">
+        <summary><span class="ic" style="background:var(--sage-l)">′</span>Как брать производную по шагам</summary>
+        <div class="sheet-body">
+          <ol>
+            <li><b>Упрости:</b> корни и дроби перепиши степенями.</li>
+            <li><b>Посмотри, что «снаружи»:</b> сумма → дифференцируем по отдельности; произведение → $(uv)'=u'v+uv'$; дробь → $\left(\frac uv\right)'=\frac{u'v-uv'}{v^2}$; функция от функции → $\bigl(f(g)\bigr)'=f'(g)\cdot g'$.</li>
+            <li><b>После</b> — вынеси общий множитель и разложи на множители: так проще найти знак.</li>
+          </ol>
+          <p><b>Сложная функция — «снаружи внутрь»:</b> берём производную внешней функции, внутреннюю не трогаем, и умножаем на производную внутренней.</p>
+          <div class="deriv-grid">
+            <div>$\left(e^{-2x}\right)'=e^{-2x}\cdot(-2)$</div>
+            <div>$\bigl((x-2)^3\bigr)'=3(x-2)^2\cdot1$</div>
+            <div>$\bigl(\ln(1+x^2)\bigr)'=\dfrac{1}{1+x^2}\cdot2x$</div>
+            <div>$\left(e^{1/x}\right)'=e^{1/x}\cdot\left(-\dfrac{1}{x^2}\right)$</div>
+          </div>
+          <div class="qa-list"><p class="qa-title">Проверь себя:</p>
+            <details class="qa"><summary>$(\sin3x)'=\;?$</summary><span>$\cos3x\cdot3=3\cos3x$</span></details>
+            <details class="qa"><summary>$\left(\sqrt{x^2+1}\right)'=\;?$</summary><span>$\dfrac{1}{2\sqrt{x^2+1}}\cdot2x=\dfrac{x}{\sqrt{x^2+1}}$</span></details>
+            <details class="qa"><summary>$\left(x\,e^{x}\right)'=\;?$</summary><span>$1\cdot e^x+x\cdot e^x=e^x(x+1)$</span></details>
+          </div>
+        </div>
+      </details>
+
+    </div>
   </section>
 
   <!-- ============ ШПАРГАЛКА ============ -->
@@ -233,6 +427,7 @@
 <script defer src="js/data/variant2.js"></script>
 <script defer src="js/data/trainer.js"></script>
 <script defer src="js/data/checks.js"></script>
+<script defer src="js/data/base-links.js"></script>
 <script defer src="js/lib/math-parser.js"></script>
 <script defer src="js/state.js"></script>
 <script defer src="js/render.js"></script>

@@ -57,6 +57,16 @@ function handleReset(btn){
   toast('Начинаем с чистого листа 🌱');
 }
 
+/* Перейти к блоку «Повторим базу»: раскрыть его, прокрутить и подсветить. */
+function gotoBase(key){
+  const el = document.getElementById('base-' + key);
+  if(!el) return;
+  el.open = true;
+  el.classList.add('in');
+  el.scrollIntoView({behavior:'smooth', block:'start'});
+  el.classList.remove('flash'); void el.offsetWidth; el.classList.add('flash');
+}
+
 function applyVariant(n){
   state.variant = n;
   document.getElementById('switch').classList.toggle('v2', n === 2);
@@ -78,6 +88,7 @@ function onClick(e){
   if(act === 'reset'){ handleReset(btn); return; }
   if(act === 'close-final'){ closeOverlay(); return; }
   if(act === 'open-card'){ requestCard(); return; }
+  if(act === 'goto-base'){ gotoBase(btn.dataset.base); return; }
   if(act === 'tease-yes'){ teaseYes(); return; }
   if(act === 'tease-no'){
     closeOverlay(); toast('Вот это настрой! 💪');
@@ -117,7 +128,7 @@ function setupNavHighlight(){
       }
     });
   }, {rootMargin:'-45% 0px -50% 0px'});
-  ['tasks','cheat','trainer','final'].forEach(id => io.observe(document.getElementById(id)));
+  ['tasks','base','cheat','trainer','final'].forEach(id => io.observe(document.getElementById(id)));
 }
 
 /* =====================================================================

@@ -144,6 +144,23 @@ section.block{padding:64px 0 24px;scroll-margin-top:56px}
 .statement{font-size:17px;color:var(--ink)}
 .statement .katex-display{margin:.7em 0 .4em}
 
+/* «📚 Пригодится» в карточке */
+.base-chips{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-top:8px;font-size:13px;color:var(--muted);font-weight:700}
+.base-chip{border:1px solid #E2DCF3;background:#F8F6FD;color:#5B4FA0;font-weight:700;font-size:13px;padding:3px 10px;border-radius:99px;transition:background .2s}
+.base-chip:hover{background:var(--lav-l)}
+/* «Проверь себя» в базе */
+.qa-list{margin-top:14px;border-top:1px dashed var(--line);padding-top:10px}
+.qa-title{font-weight:800;color:var(--ink-2);font-size:14.5px;margin:0 0 6px}
+details.qa{background:var(--bg);border-radius:12px;margin:6px 0;padding:8px 12px}
+details.qa summary{cursor:pointer;font-weight:700;color:var(--ink);list-style:none}
+details.qa summary::-webkit-details-marker{display:none}
+details.qa summary::before{content:"❓ ";font-size:13px}
+details.qa[open] summary::before{content:"💡 "}
+details.qa > span{display:block;margin-top:6px;color:#2F6B47;animation:rise .3s var(--ease)}
+details.sheet{scroll-margin-top:70px}
+details.sheet.flash{animation:flash 1.6s ease}
+@keyframes flash{0%,60%{box-shadow:0 0 0 4px rgba(143,130,191,.45)}100%{box-shadow:var(--shadow-s)}}
+
 .actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
 .btn{
   border:1.5px solid var(--line); background:#fff; color:var(--ink-2);

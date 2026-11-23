@@ -18,6 +18,14 @@ function tableHTML(rows){
     '</table></div>';
 }
 
+/* «📚 Пригодится: …» — ссылки на блоки раздела «Повторим базу» */
+function baseChipsHTML(id){
+  const topics = (BASE_LINKS[id] || []).filter(k => BASE_TOPICS[k]);
+  if(!topics.length) return '';
+  return `<div class="base-chips"><span>📚 Пригодится:</span>${topics.map(k =>
+    `<button type="button" class="base-chip" data-act="goto-base" data-base="${k}">${BASE_TOPICS[k]}</button>`).join('')}</div>`;
+}
+
 function cardHTML(t){
   return `
   <article class="card reveal${isSolved(t.id)?' solved':''}" data-id="${t.id}">
@@ -27,6 +35,7 @@ function cardHTML(t){
       <span class="done-mark">решено 💚</span>
     </div>
     <div class="statement">${t.q}</div>
+    ${baseChipsHTML(t.id)}
     <div class="actions">
       ${CHECKS[t.id] ? '<button class="btn" data-act="check" aria-pressed="false">✍️ Мой ответ</button>' : ''}
       <button class="btn" data-act="hint" aria-pressed="false">💡 Подсказка</button>
